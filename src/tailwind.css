@@ -1,0 +1,368 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom font imports */
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cormorant:wght@700&family=Prata:wght@400&family=Anton:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.cdnfonts.com/css/hagrid');
+@import url('https://fonts.cdnfonts.com/css/the-seasons');
+@import url('https://fonts.cdnfonts.com/css/canva-sans');
+
+/* Base styles */
+@layer base {
+  html {
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    color: theme('colors.portfolio.text-primary');
+    background-color: theme('colors.portfolio.bg');
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: theme('colors.portfolio.bg');
+    color: theme('colors.portfolio.text-primary');
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: 550;
+    line-height: 1.2;
+    color: theme('colors.portfolio.text-primary');
+    letter-spacing: -0.01em;
+  }
+
+  h1 { font-size: theme('fontSize.4xl'); }
+  h2 { font-size: theme('fontSize.3xl'); }
+  h3 { font-size: theme('fontSize.2xl'); }
+  h4 { font-size: theme('fontSize.xl'); }
+  h5 { font-size: theme('fontSize.lg'); }
+  h6 { font-size: theme('fontSize.md'); }
+
+  p {
+    margin: 0 0 theme('spacing.16') 0;
+  }
+
+  a {
+    color: theme('colors.teal.500');
+    text-decoration: none;
+    transition: color 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  a:hover {
+    color: theme('colors.teal.600');
+  }
+
+  /* Accessibility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.teal.500');
+    outline-offset: 2px;
+  }
+}
+
+/* Component styles */
+@layer components {
+  /* Container */
+  .container {
+    @apply w-full mx-auto px-4;
+  }
+
+  @screen sm {
+    .container {
+      max-width: 640px;
+    }
+  }
+  @screen md {
+    .container {
+      max-width: 768px;
+    }
+  }
+  @screen lg {
+    .container {
+      max-width: 1024px;
+    }
+  }
+  @screen xl {
+    .container {
+      max-width: 1280px;
+    }
+  }
+
+  /* Header */
+  .header {
+    @apply fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md py-4 animate-fade-in-up;
+  }
+
+  .header-content {
+    @apply flex items-center justify-between;
+  }
+
+  .logo {
+    @apply flex items-center;
+  }
+
+  .nav {
+    @apply ml-auto;
+  }
+
+  .logo-text {
+    @apply text-portfolio-text-primary m-0 tracking-tight;
+    font-size: 32px;
+  }
+
+  .nav-list {
+    @apply flex list-none m-0 p-0 gap-8;
+  }
+
+  .nav-item {
+    @apply m-0;
+  }
+
+  .nav-link {
+    @apply text-portfolio-text-secondary no-underline transition-colors duration-300 ease-in-out relative cursor-pointer;
+    font-size: 28px;
+  }
+
+  .nav-link:hover {
+    @apply text-portfolio-text-primary;
+  }
+
+  .nav-link:after {
+    content: '';
+    @apply absolute w-0 h-px bottom-[-4px] left-0 bg-portfolio-accent transition-all duration-300 ease-in-out;
+  }
+
+  .nav-link:hover:after {
+    @apply w-full;
+  }
+
+  /* Hero Section */
+  .hero {
+    @apply flex-1 flex items-center justify-center min-h-screen py-8 text-center;
+  }
+
+  .hero-content {
+    @apply max-w-4xl mx-auto animate-fade-in-up-delayed;
+  }
+
+  .greeting-text {
+    @apply font-canva text-portfolio-text-secondary mb-4 font-normal;
+    font-size: 32px;
+  }
+
+  .main-name {
+    @apply font-cormorant text-portfolio-text-primary my-6 font-bold leading-[0.9] uppercase tracking-tight;
+    font-size: 38px;
+  }
+
+  .welcome-section {
+    @apply mt-8;
+  }
+
+  .welcome-text {
+    @apply font-canva text-portfolio-text-secondary mb-3 font-normal;
+    font-size: 68px;
+  }
+
+  .work-text {
+    @apply font-canva m-0 font-normal relative inline-block cursor-pointer;
+    font-size: 32px;
+    background: linear-gradient(90deg, theme('colors.portfolio.accent') 0%, theme('colors.portfolio.accent') 50%, theme('colors.portfolio.text-secondary') 50%);
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    transition: background-position 0.25s ease-in-out;
+  }
+
+  .work-text:after {
+    content: '';
+    @apply absolute left-0 bottom-0 w-full h-px bg-portfolio-text-secondary;
+  }
+
+  .work-text:hover {
+    background-position: 0% 0;
+  }
+
+
+  /* Footer */
+  .footer {
+    @apply fixed bottom-0 left-0 right-0 bg-transparent py-2 z-50 animate-fade-in-up-delayed-2;
+  }
+
+  .footer-content {
+    @apply flex justify-start;
+  }
+
+  .social-links {
+    @apply flex gap-5;
+  }
+
+  .social-link {
+    @apply flex items-center justify-center w-11 h-11 bg-white/10 rounded-full text-portfolio-accent transition-all duration-300 ease-in-out no-underline backdrop-blur-md border border-white/10;
+  }
+
+  .social-link:hover {
+    @apply bg-portfolio-accent text-portfolio-text-primary -translate-y-0.5 shadow-lg;
+    box-shadow: 0 8px 20px rgba(255, 69, 0, 0.3);
+  }
+
+  .social-link svg {
+    width: 36px;
+    height: 36px;
+  }
+
+
+}
+
+/* Utility classes */
+@layer utilities {
+  /* Custom font families */
+  .font-hagrid {
+    font-family: 'Hagrid', sans-serif;
+  }
+
+  .font-seasons {
+    font-family: 'The Seasons', sans-serif;
+  }
+
+  .font-canva {
+    font-family: 'Canva Sans', sans-serif;
+  }
+
+  .font-alfa {
+    font-family: 'Alfa Slab One', cursive;
+  }
+
+  .font-cormorant {
+    font-family: 'Cormorant', serif;
+  }
+
+  .font-prata {
+    font-family: 'Prata', serif;
+  }
+
+  .font-raleway {
+    font-family: 'Raleway', sans-serif;
+  }
+
+  .font-anton {
+    font-family: 'Anton', sans-serif;
+  }
+
+  /* Custom animations */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-fade-in-up-delayed {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+
+  .animate-fade-in-up-delayed-2 {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+  }
+
+  /* Responsive adjustments */
+  @screen md {
+    .header {
+      @apply py-3;
+    }
+
+    .nav-list {
+      @apply gap-5;
+    }
+
+    .logo-text {
+      font-size: 28px;
+    }
+
+    .nav-link {
+      font-size: 24px;
+    }
+    
+          .hero {
+        @apply pt-32 min-h-[calc(100vh-140px)];
+      }
+    
+    .greeting-text {
+      font-size: 28px;
+    }
+
+    .work-text {
+      font-size: 29px;
+    }
+
+    .welcome-text {
+      font-size: 62px;
+    }
+
+    .main-name {
+      font-size: 46px;
+      @apply my-4;
+    }
+    
+    .footer {
+      @apply relative mt-8;
+    }
+  }
+
+  @screen sm {
+    .container {
+      @apply px-3;
+    }
+    
+    .greeting-text {
+      font-size: 28px;
+    }
+
+    .work-text {
+      font-size: 29px;
+    }
+
+    .welcome-text {
+      font-size: 62px;
+    }
+
+    .main-name {
+      font-size: 46px;
+    }
+    
+    .social-link {
+      @apply w-10 h-10;
+    }
+    
+    .social-link svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
