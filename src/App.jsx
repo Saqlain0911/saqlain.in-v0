@@ -1,10 +1,25 @@
 import React from 'react';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
+import Galaxy from './components/Galaxy.jsx';
+import ShinyText from './components/ShinyText.jsx';
 
 function App() {
   return (
     <div className="min-h-screen">
+      {/* Galaxy Background */}
+      <div className="fixed inset-0 z-0">
+        <Galaxy
+          mouseAttraction={true}
+          mouseRepulsion={false}
+          mouseInteraction={true}
+          density={1.5}
+          glowIntensity={0.5}
+          saturation={0.8}
+          hueShift={240}
+        />
+      </div>
+
       <Header />
       
       {/* Hero Section */}
@@ -18,7 +33,7 @@ function App() {
                 I welcome you to see
               </p>
               <p className="work-text font-raleway italic text-portfolio-text-secondary font-semibold underline cursor-pointer hover:text-portfolio-text-primary">
-                my work
+                <ShinyText text="my work" speed={1.75} />
               </p>
             </div>
           </div>

@@ -3,11 +3,7 @@
 @tailwind utilities;
 
 /* Custom font imports */
-@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cormorant:wght@700&family=Prata:wght@400&family=Anton:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-@import url('https://fonts.cdnfonts.com/css/hagrid');
-@import url('https://fonts.cdnfonts.com/css/the-seasons');
-@import url('https://fonts.cdnfonts.com/css/canva-sans');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cormorant:wght@700&family=Prata:wght@400&family=Anton:wght@400&family=Inter:wght@400;500;600&family=Raleway:ital,wght@0,400;1,400&display=swap');
 
 /* Base styles */
 @layer base {
@@ -164,21 +160,25 @@
 
   /* Hero Section */
   .hero {
-    @apply flex-1 flex items-center justify-center min-h-screen py-8 text-center;
+    @apply flex-1 flex items-center justify-center min-h-screen py-8 text-center relative z-20;
+    pointer-events: none;
   }
 
   .hero-content {
     @apply max-w-4xl mx-auto animate-fade-in-up-delayed;
+    pointer-events: none;
   }
 
   .greeting-text {
     @apply font-canva text-portfolio-text-secondary mb-4 font-normal;
     font-size: 32px;
+    pointer-events: auto;
   }
 
   .main-name {
     @apply font-cormorant text-portfolio-text-primary my-6 font-bold leading-[0.9] uppercase tracking-tight;
     font-size: 38px;
+    pointer-events: auto;
   }
 
   .welcome-section {
@@ -188,6 +188,7 @@
   .welcome-text {
     @apply font-canva text-portfolio-text-secondary mb-3 font-normal;
     font-size: 68px;
+    pointer-events: auto;
   }
 
   .work-text {
@@ -201,6 +202,7 @@
     -webkit-text-fill-color: transparent;
     color: transparent;
     transition: background-position 0.25s ease-in-out;
+    pointer-events: auto;
   }
 
   .work-text:after {
@@ -215,30 +217,119 @@
 
   /* Footer */
   .footer {
-    @apply fixed bottom-0 left-0 right-0 bg-transparent py-2 z-50 animate-fade-in-up-delayed-2;
+    @apply fixed bottom-0 left-0 right-0 bg-transparent py-1 z-50;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
   }
 
   .footer-content {
-    @apply flex justify-start;
+    @apply flex items-center justify-between;
   }
 
   .social-links {
-    @apply flex gap-5;
+    @apply flex items-center ml-4;
+    gap: 20px;
   }
 
   .social-link {
-    @apply flex items-center justify-center w-11 h-11 bg-white/10 rounded-full text-portfolio-accent transition-all duration-300 ease-in-out no-underline backdrop-blur-md border border-white/10;
+    @apply flex items-center justify-center w-14 h-14 bg-white/10 rounded-full no-underline backdrop-blur-md border border-white/20;
+    transition: all 250ms ease-in-out;
+  }
+
+  .social-link i {
+    transition: color 250ms ease-in-out;
   }
 
   .social-link:hover {
-    @apply bg-portfolio-accent text-portfolio-text-primary -translate-y-0.5 shadow-lg;
-    box-shadow: 0 8px 20px rgba(255, 69, 0, 0.3);
+    @apply -translate-y-1 shadow-lg;
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+    transform: translateY(-4px) scale(1.05);
   }
 
-  .social-link svg {
-    width: 36px;
-    height: 36px;
+  .social-link:hover i {
+    color: #7c3aed !important;
   }
+
+  /* Cookie Notice Styles */
+  .cookie-notice {
+    @apply ml-0;
+  }
+
+  .cookie-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    line-height: 1.4;
+  }
+
+  .learn-more-link {
+    @apply bg-transparent border-none cursor-pointer p-0 underline;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    transition: color 250ms ease-in-out;
+  }
+
+  .learn-more-link:hover {
+    color: #7c3aed;
+  }
+
+  /* Cookie Popup Styles */
+  .cookie-popup-overlay {
+    @apply fixed inset-0 bg-black/50 flex items-center justify-center z-50;
+    backdrop-filter: blur(4px);
+  }
+
+  .cookie-popup {
+    @apply bg-white rounded-lg shadow-xl max-w-md w-full mx-4 transform;
+    animation: popupSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .cookie-popup-content {
+    @apply p-6;
+  }
+
+  .cookie-popup-text {
+    @apply text-gray-800 mb-4 leading-relaxed;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .cookie-accept-btn {
+    @apply bg-portfolio-accent text-white px-6 py-2 rounded-lg border-none cursor-pointer font-medium;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    transition: all 250ms ease-in-out;
+  }
+
+  .cookie-accept-btn:hover {
+    @apply bg-portfolio-accent-hover transform scale-105 shadow-lg;
+  }
+
+  /* Keyframes for animations */
+  @keyframes popupSlideIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.9) translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /* Keyframes for animations */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
 
 
 }
@@ -247,15 +338,15 @@
 @layer utilities {
   /* Custom font families */
   .font-hagrid {
-    font-family: 'Hagrid', sans-serif;
+    font-family: 'Inter', 'Arial Black', sans-serif;
   }
 
   .font-seasons {
-    font-family: 'The Seasons', sans-serif;
+    font-family: 'Cormorant', 'Georgia', serif;
   }
 
   .font-canva {
-    font-family: 'Canva Sans', sans-serif;
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
   }
 
   .font-alfa {
@@ -331,7 +422,28 @@
     }
     
     .footer {
-      @apply relative mt-8;
+      @apply relative mt-8 py-1;
+    }
+
+    .social-links {
+      @apply ml-3;
+      gap: 20px;
+    }
+
+    .social-link {
+      @apply w-12 h-12;
+    }
+
+    .cookie-notice {
+      @apply ml-0;
+    }
+
+    .cookie-text, .learn-more-link {
+      font-size: 12px;
+    }
+
+    .cookie-popup {
+      @apply max-w-sm mx-3;
     }
   }
 
@@ -355,14 +467,10 @@
     .main-name {
       font-size: 46px;
     }
-    
+
     .social-link {
-      @apply w-10 h-10;
+      @apply w-12 h-12;
     }
     
-    .social-link svg {
-      width: 32px;
-      height: 32px;
-    }
   }
 }
