@@ -129,6 +129,10 @@ module.exports = {
           '70%, 80%': { color: '#FACC15' },
           '80%, 100%': { color: 'white' },
         },
+        cursorPulse: {
+          '0%': { opacity: '0.8' },
+          '100%': { opacity: '1' },
+        },
       },
       backdropBlur: {
         'xs': '2px',

@@ -86,7 +86,7 @@ const CustomCursor = () => {
             0 0 20px rgba(255, 255, 255, 0.5),
             inset 0 0 10px rgba(0, 0, 0, 0.3)
           `,
-          animation: `cursor-pulse 0.8s ease-in-out infinite alternate`,
+          animation: `cursorPulse 0.8s ease-in-out infinite alternate`,
         }}
       >
         {/* Inner core */}
