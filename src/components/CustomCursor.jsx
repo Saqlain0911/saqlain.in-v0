@@ -86,7 +86,7 @@ const CustomCursor = () => {
             0 0 20px rgba(255, 255, 255, 0.5),
             inset 0 0 10px rgba(0, 0, 0, 0.3)
           `,
-          animation: `pulse 0.8s ease-in-out infinite alternate`,
+          animation: `cursor-pulse 0.8s ease-in-out infinite alternate`,
         }}
       >
         {/* Inner core */}
@@ -105,13 +105,6 @@ const CustomCursor = () => {
         />
       </div>
 
-      {/* Add pulse animation */}
-      <style jsx>{`
-        @keyframes pulse {
-          0% { opacity: 0.8; }
-          100% { opacity: 1; }
-        }
-      `}</style>
     </div>
   );
 };
