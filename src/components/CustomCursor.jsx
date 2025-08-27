@@ -27,10 +27,10 @@ const CustomCursor = () => {
       el.style.cursor = 'none';
     });
 
-    // Animation loop for cursor frames
+    // Animation loop for color cycling only (no rotation)
     const animationInterval = setInterval(() => {
-      setFrame(prev => (prev + 1) % 12); // 12 frame animation for smoother rotation
-    }, 80); // 80ms per frame
+      setFrame(prev => (prev + 1) % 360); // Smooth color cycling
+    }, 50); // 50ms per frame for smooth color transitions
 
     return () => {
       window.removeEventListener('mousemove', updatePosition);
@@ -44,10 +44,9 @@ const CustomCursor = () => {
     };
   }, []);
 
-  // Main container style for 3D tetrahedron cursor
+  // Static cursor style (no spinning)
   const getCursorStyle = () => {
-    const baseSize = isHovering ? 28 : 22;
-    const rotation = frame * 30; // 30 degrees per frame for smooth rotation
+    const baseSize = isHovering ? 32 : 26;
     
     return {
       position: 'fixed',
@@ -57,127 +56,116 @@ const CustomCursor = () => {
       height: baseSize,
       pointerEvents: 'none',
       zIndex: 9999,
-      transform: `perspective(100px) rotateY(${rotation}deg) rotateX(${Math.sin(frame * 0.3) * 15}deg) scale(${isHovering ? 1.3 : 1})`,
-      transition: 'transform 0.1s ease-out',
-      filter: `brightness(${1 + Math.sin(frame * 0.5) * 0.2})`,
-      transformStyle: 'preserve-3d',
+      transform: `scale(${isHovering ? 1.2 : 1})`, // Only scale, no rotation
+      transition: 'transform 0.2s ease-out',
+      filter: `brightness(${isHovering ? 1.3 : 1}) saturate(${isHovering ? 1.2 : 1})`,
     };
   };
 
-  // Get color for different faces based on animation frame
-  const getFaceColor = (offset = 0) => {
-    const hue = (frame * 25 + offset) % 360;
-    return `hsl(${hue}, 100%, 60%)`;
+  // Get dynamic colors
+  const getBaseColor = () => {
+    const hue = frame % 360;
+    return `hsl(${hue}, 100%, 65%)`;
   };
 
-  // Face gradient for 3D effect
-  const getFaceGradient = (faceIndex) => {
-    const baseColor = getFaceColor(faceIndex * 60);
-    const lightColor = getFaceColor(faceIndex * 60 + 30);
-    const darkColor = getFaceColor(faceIndex * 60 - 30);
-    
-    return `linear-gradient(135deg, 
-      ${lightColor} 0%, 
-      ${baseColor} 50%, 
-      ${darkColor} 100%)`;
+  const getAccentColor = () => {
+    const hue = (frame + 60) % 360;
+    return `hsl(${hue}, 100%, 75%)`;
+  };
+
+  const getShadowColor = () => {
+    const hue = (frame + 30) % 360;
+    return `hsl(${hue}, 100%, 45%)`;
   };
 
   return (
     <div style={getCursorStyle()}>
-      {/* Main triangular face (front) */}
+      {/* Main concave kite shape */}
       <div
         style={{
           position: 'absolute',
           width: '100%',
           height: '100%',
-          background: getFaceGradient(0),
-          clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-          border: '1px solid rgba(255, 255, 255, 0.8)',
+          background: `linear-gradient(135deg, 
+            ${getAccentColor()} 0%, 
+            ${getBaseColor()} 50%, 
+            ${getShadowColor()} 100%)`,
+          // Concave kite shape: top point, wide sides, concave bottom
+          clipPath: 'polygon(50% 0%, 85% 40%, 70% 85%, 50% 75%, 30% 85%, 15% 40%)',
+          border: '2px solid rgba(255, 255, 255, 0.9)',
           boxShadow: `
-            0 0 15px ${getFaceColor(0)}40,
-            inset 0 0 8px rgba(255, 255, 255, 0.3)
+            0 0 20px ${getBaseColor()}60,
+            inset 0 0 10px rgba(255, 255, 255, 0.4),
+            0 4px 15px rgba(0, 0, 0, 0.3)
           `,
-          transform: 'translateZ(8px)',
+          filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4))',
         }}
       />
 
-      {/* Left face */}
+      {/* Inner highlight for depth */}
+      <div
+        style={{
+          position: 'absolute',
+          width: '80%',
+          height: '80%',
+          top: '10%',
+          left: '10%',
+          background: `linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.6) 0%, 
+            ${getAccentColor()}80 30%,
+            transparent 60%)`,
+          // Smaller version of the same concave kite shape
+          clipPath: 'polygon(50% 5%, 80% 40%, 65% 80%, 50% 70%, 35% 80%, 20% 40%)',
+        }}
+      />
+
+      {/* Edge definition lines */}
       <div
         style={{
           position: 'absolute',
           width: '100%',
           height: '100%',
-          background: getFaceGradient(1),
-          clipPath: 'polygon(50% 0%, 0% 100%, 50% 70%)',
-          border: '1px solid rgba(255, 255, 255, 0.6)',
-          boxShadow: `
-            0 0 10px ${getFaceColor(60)}30,
-            inset 0 0 6px rgba(0, 0, 0, 0.2)
-          `,
-          transform: 'rotateY(-60deg) translateZ(4px)',
-          opacity: 0.9,
+          border: '1px solid rgba(255, 255, 255, 0.7)',
+          clipPath: 'polygon(50% 0%, 85% 40%, 70% 85%, 50% 75%, 30% 85%, 15% 40%)',
+          background: 'transparent',
         }}
       />
 
-      {/* Right face */}
+      {/* Center core point */}
       <div
         style={{
           position: 'absolute',
-          width: '100%',
-          height: '100%',
-          background: getFaceGradient(2),
-          clipPath: 'polygon(50% 0%, 100% 100%, 50% 70%)',
-          border: '1px solid rgba(255, 255, 255, 0.6)',
-          boxShadow: `
-            0 0 10px ${getFaceColor(120)}30,
-            inset 0 0 6px rgba(0, 0, 0, 0.2)
-          `,
-          transform: 'rotateY(60deg) translateZ(4px)',
-          opacity: 0.9,
-        }}
-      />
-
-      {/* Core light point */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '30%',
+          top: '45%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '6px',
-          height: '6px',
+          width: '4px',
+          height: '4px',
           background: '#ffffff',
           borderRadius: '50%',
           boxShadow: `
-            0 0 12px rgba(255, 255, 255, 0.9),
-            0 0 20px ${getFaceColor(180)}60
+            0 0 8px rgba(255, 255, 255, 0.9),
+            0 0 15px ${getBaseColor()}80
           `,
-          animation: 'cursorPulse 0.6s ease-in-out infinite alternate',
+          animation: 'cursorPulse 1s ease-in-out infinite alternate',
         }}
       />
 
-      {/* Energy trails */}
+      {/* Subtle glow effect (no spinning) */}
       <div
         style={{
           position: 'absolute',
-          width: '140%',
-          height: '140%',
-          top: '-20%',
-          left: '-20%',
-          background: `conic-gradient(
-            from ${frame * 30}deg,
-            transparent 0deg,
-            ${getFaceColor(0)}20 30deg,
-            transparent 60deg,
-            ${getFaceColor(120)}20 150deg,
-            transparent 180deg,
-            ${getFaceColor(240)}20 270deg,
-            transparent 360deg
-          )`,
+          width: '120%',
+          height: '120%',
+          top: '-10%',
+          left: '-10%',
+          background: `radial-gradient(circle, 
+            ${getBaseColor()}15 0%, 
+            ${getAccentColor()}10 40%, 
+            transparent 70%)`,
           borderRadius: '50%',
-          opacity: 0.4,
-          filter: 'blur(2px)',
-          animation: 'cursorPulse 1.2s ease-in-out infinite alternate',
+          opacity: isHovering ? 0.8 : 0.5,
+          filter: 'blur(3px)',
+          transition: 'opacity 0.3s ease',
         }}
       />
     </div>
