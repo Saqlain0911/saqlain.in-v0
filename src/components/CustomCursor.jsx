@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const AnimatedCursor = () => {
+const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [frame, setFrame] = useState(0);
@@ -116,4 +116,4 @@ const AnimatedCursor = () => {
   );
 };
 
-export default AnimatedCursor;
+export default CustomCursor;
