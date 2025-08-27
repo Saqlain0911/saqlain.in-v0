@@ -4,6 +4,7 @@ const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [frame, setFrame] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const updatePosition = (e) => {
@@ -13,11 +14,19 @@ const CustomCursor = () => {
     const handleMouseEnter = () => setIsHovering(true);
     const handleMouseLeave = () => setIsHovering(false);
 
+    // Handle mouse entering/leaving the window
+    const handleWindowMouseLeave = () => setIsVisible(false);
+    const handleWindowMouseEnter = () => setIsVisible(true);
+
     // Hide default cursor
     document.body.style.cursor = 'none';
 
     // Add event listeners for mouse movement
     window.addEventListener('mousemove', updatePosition);
+
+    // Add window mouse enter/leave detection
+    document.addEventListener('mouseleave', handleWindowMouseLeave);
+    document.addEventListener('mouseenter', handleWindowMouseEnter);
 
     // Add hover detection for interactive elements
     const interactiveElements = document.querySelectorAll('a, button, [role="button"], .cursor-pointer');
@@ -34,6 +43,8 @@ const CustomCursor = () => {
 
     return () => {
       window.removeEventListener('mousemove', updatePosition);
+      document.removeEventListener('mouseleave', handleWindowMouseLeave);
+      document.removeEventListener('mouseenter', handleWindowMouseEnter);
       document.body.style.cursor = '';
       interactiveElements.forEach(el => {
         el.removeEventListener('mouseenter', handleMouseEnter);
@@ -57,8 +68,9 @@ const CustomCursor = () => {
       pointerEvents: 'none',
       zIndex: 9999,
       transform: `rotate(-45deg) scale(${isHovering ? 1.2 : 1})`, // Tilt 45 degrees left + scale
-      transition: 'transform 0.2s ease-out',
+      transition: 'transform 0.2s ease-out, opacity 0.1s ease-out',
       filter: `brightness(${isHovering ? 1.3 : 1}) saturate(${isHovering ? 1.2 : 1})`,
+      opacity: isVisible ? 1 : 0,
     };
   };
 
