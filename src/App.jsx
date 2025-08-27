@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import Galaxy from './components/Galaxy.jsx';
 import ShinyText from './components/ShinyText.jsx';
+import Preloader from './components/Preloader.jsx';
+import CustomCursor from './components/CustomCursor.jsx';
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Preloader />;
+  }
+
   return (
     <div className="min-h-screen">
+      <CustomCursor />
+
       {/* Galaxy Background */}
       <div className="fixed inset-0 z-0">
         <Galaxy
@@ -21,7 +39,7 @@ function App() {
       </div>
 
       <Header />
-      
+
       {/* Hero Section */}
       <section id="hero" className="hero min-h-screen flex items-center">
         <div className="container">

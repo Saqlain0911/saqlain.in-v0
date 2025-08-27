@@ -14,8 +14,8 @@ module.exports = {
           'bg': '#000000',
           'text-primary': '#ffffff',
           'text-secondary': '#cccccc',
-          'accent': '#7c3aed',
-          'accent-hover': '#8b5cf6',
+          'accent': '#FACC15',
+          'accent-hover': '#FACC15',
         },
         'teal': {
           300: 'rgba(50, 184, 198, 1)',
@@ -85,6 +85,9 @@ module.exports = {
         'fade-in-up-delayed': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both',
         'fade-in-up-delayed-2': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both',
         'shine': 'shine 1.75s linear infinite',
+        'dot-fill-1': 'dotFill1 3s infinite',
+        'dot-fill-2': 'dotFill2 3s infinite',
+        'dot-fill-3': 'dotFill3 3s infinite',
       },
       keyframes: {
         fadeInUp: {
@@ -100,6 +103,27 @@ module.exports = {
         shine: {
           '0%': { 'background-position': '100%' },
           '100%': { 'background-position': '-100%' },
+        },
+        dotFill1: {
+          '0%, 10%': { color: 'white' },
+          '10%, 20%': { color: '#FACC15' },
+          '20%, 60%': { color: 'white' },
+          '60%, 70%': { color: '#FACC15' },
+          '70%, 100%': { color: 'white' },
+        },
+        dotFill2: {
+          '0%, 15%': { color: 'white' },
+          '15%, 25%': { color: '#FACC15' },
+          '25%, 65%': { color: 'white' },
+          '65%, 75%': { color: '#FACC15' },
+          '75%, 100%': { color: 'white' },
+        },
+        dotFill3: {
+          '0%, 20%': { color: 'white' },
+          '20%, 30%': { color: '#FACC15' },
+          '30%, 70%': { color: 'white' },
+          '70%, 80%': { color: '#FACC15' },
+          '80%, 100%': { color: 'white' },
         },
       },
       backdropBlur: {

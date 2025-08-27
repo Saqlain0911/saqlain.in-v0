@@ -25,6 +25,7 @@
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+    cursor: none;
   }
 
   *,
@@ -79,6 +80,17 @@
   :focus-visible {
     outline: 2px solid theme('colors.teal.500');
     outline-offset: 2px;
+  }
+
+  /* Custom text selection colors */
+  ::selection {
+    background-color: #FACC15;
+    color: #000000;
+  }
+
+  ::-moz-selection {
+    background-color: #FACC15;
+    color: #000000;
   }
 }
 
@@ -246,7 +258,7 @@
   }
 
   .social-link:hover i {
-    color: #7c3aed !important;
+    color: #FACC15 !important;
   }
 
   /* Cookie Notice Styles */
@@ -270,7 +282,7 @@
   }
 
   .learn-more-link:hover {
-    color: #7c3aed;
+    color: #FACC15;
   }
 
   /* Cookie Popup Styles */
