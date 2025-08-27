@@ -33,48 +33,71 @@ const CustomCursor = () => {
 
   return (
     <>
-      {/* Main cursor */}
+      {/* Main triangular cursor */}
       <div
-        className={`fixed top-0 left-0 z-[9999] pointer-events-none transition-transform duration-100 ease-out ${
-          isHovering ? 'scale-150' : 'scale-100'
+        className={`fixed top-0 left-0 z-[9999] pointer-events-none transition-all duration-200 ease-out ${
+          isHovering ? 'scale-125' : 'scale-100'
         }`}
         style={{
-          transform: `translate(${position.x - 12}px, ${position.y - 12}px)`,
+          transform: `translate(${position.x - 8}px, ${position.y - 8}px)`,
         }}
       >
-        {/* Outer ring */}
+        {/* Triangular cursor body */}
         <div
-          className={`w-6 h-6 border-2 border-portfolio-accent rounded-full transition-all duration-200 ${
-            isHovering ? 'border-white' : 'border-portfolio-accent'
-          }`}
+          className="relative w-6 h-6"
           style={{
-            boxShadow: `0 0 20px ${isHovering ? '#ffffff' : '#FACC15'}40`,
+            background: `linear-gradient(135deg, 
+              #ffffff 0%, 
+              #e5e5e5 15%, 
+              #cccccc 35%, 
+              #999999 50%, 
+              #666666 65%, 
+              #333333 85%, 
+              #000000 100%)`,
+            clipPath: 'polygon(0% 0%, 100% 100%, 0% 100%)',
+            filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3)) drop-shadow(0 0 8px rgba(250,204,21,0.4))',
           }}
         />
         
-        {/* Inner dot */}
+        {/* Inner highlight */}
         <div
-          className={`absolute top-1/2 left-1/2 w-2 h-2 rounded-full transition-all duration-200 ${
-            isHovering ? 'bg-white' : 'bg-portfolio-accent'
-          }`}
+          className="absolute top-0 left-0 w-4 h-4"
           style={{
-            transform: 'translate(-50%, -50%)',
-            boxShadow: `0 0 10px ${isHovering ? '#ffffff' : '#FACC15'}80`,
+            background: `linear-gradient(135deg, 
+              rgba(255,255,255,0.9) 0%, 
+              rgba(250,204,21,0.8) 30%, 
+              rgba(255,215,0,0.6) 50%, 
+              transparent 70%)`,
+            clipPath: 'polygon(0% 0%, 70% 70%, 0% 70%)',
+          }}
+        />
+        
+        {/* Edge highlight */}
+        <div
+          className="absolute top-0 left-0 w-6 h-6"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255,255,255,0.6) 0%, transparent 20%)',
+            clipPath: 'polygon(0% 0%, 100% 100%, 0% 100%)',
           }}
         />
       </div>
 
-      {/* Trailing effect */}
+      {/* Subtle trailing glow */}
       <div
-        className="fixed top-0 left-0 z-[9998] pointer-events-none transition-transform duration-300 ease-out"
+        className="fixed top-0 left-0 z-[9998] pointer-events-none transition-all duration-500 ease-out"
         style={{
-          transform: `translate(${position.x - 20}px, ${position.y - 20}px)`,
+          transform: `translate(${position.x - 12}px, ${position.y - 12}px)`,
+          opacity: isHovering ? 0.7 : 0.4,
         }}
       >
         <div
-          className="w-10 h-10 border border-portfolio-accent/30 rounded-full"
+          className="w-6 h-6 rounded-full"
           style={{
-            boxShadow: '0 0 30px #FACC1520',
+            background: `radial-gradient(circle, 
+              rgba(250,204,21,0.3) 0%, 
+              rgba(250,204,21,0.1) 50%, 
+              transparent 100%)`,
+            filter: 'blur(3px)',
           }}
         />
       </div>

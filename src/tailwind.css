@@ -84,13 +84,13 @@
 
   /* Custom text selection colors */
   ::selection {
-    background-color: #FACC15;
-    color: #000000;
+    background-color: rgba(250, 204, 21, 0.3);
+    color: #ffffff;
   }
 
   ::-moz-selection {
-    background-color: #FACC15;
-    color: #000000;
+    background-color: rgba(250, 204, 21, 0.3);
+    color: #ffffff;
   }
 }
 
