@@ -58,6 +58,7 @@
     color: theme('colors.teal.500');
     text-decoration: none;
     transition: color 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: none;
   }
 
   a:hover {
@@ -84,13 +85,13 @@
 
   /* Custom text selection colors */
   ::selection {
-    background-color: #FACC15;
-    color: #000000;
+    background-color: rgba(250, 204, 21, 0.75);
+    color: #000000 !important;
   }
 
   ::-moz-selection {
-    background-color: #FACC15;
-    color: #000000;
+    background-color: rgba(250, 204, 21, 0.75);
+    color: #000000 !important;
   }
 }
 

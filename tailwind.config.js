@@ -85,9 +85,10 @@ module.exports = {
         'fade-in-up-delayed': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both',
         'fade-in-up-delayed-2': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both',
         'shine': 'shine 1.75s linear infinite',
-        'dot-fill-1': 'dotFill1 3s infinite',
-        'dot-fill-2': 'dotFill2 3s infinite',
-        'dot-fill-3': 'dotFill3 3s infinite',
+        'dot-fill-1': 'dotFill1 1.33s infinite',
+        'dot-fill-2': 'dotFill2 1.33s infinite',
+        'dot-fill-3': 'dotFill3 1.33s infinite',
+        'cursor-pulse': 'cursorPulse 0.8s ease-in-out infinite alternate',
       },
       keyframes: {
         fadeInUp: {
@@ -124,6 +125,10 @@ module.exports = {
           '30%, 70%': { color: 'white' },
           '70%, 80%': { color: '#FACC15' },
           '80%, 100%': { color: 'white' },
+        },
+        cursorPulse: {
+          '0%': { opacity: '0.8' },
+          '100%': { opacity: '1' },
         },
       },
       backdropBlur: {

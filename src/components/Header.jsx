@@ -7,8 +7,8 @@ const Header = () => {
         <div className="header-content">
           <div className="logo">
             <div className="flex flex-col leading-none">
-              <h1 className="logo-text font-anton text-white">Saqlain</h1>
-              <h1 className="logo-text font-anton text-white" style={{paddingLeft: '0.25em'}}>Sheikh</h1>
+              <h1 className="logo-text font-anton text-white select-none">Saqlain</h1>
+              <h1 className="logo-text font-anton text-white select-none" style={{paddingLeft: '0.25em'}}>Sheikh</h1>
             </div>
           </div>
           <nav className="nav">
