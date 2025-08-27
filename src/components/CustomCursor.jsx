@@ -90,8 +90,8 @@ const CustomCursor = () => {
             ${getAccentColor()} 0%, 
             ${getBaseColor()} 50%, 
             ${getShadowColor()} 100%)`,
-          // 4-vertex concave kite shape: top point, right, bottom (concave), left
-          clipPath: 'polygon(50% 0%, 85% 60%, 50% 80%, 15% 60%)',
+          // Chevron/arrow shape like reference image: top point, bottom-right, bottom-left
+          clipPath: 'polygon(50% 0%, 85% 75%, 50% 60%, 15% 75%)',
           border: '2px solid rgba(255, 255, 255, 0.9)',
           boxShadow: `
             0 0 20px ${getBaseColor()}60,
@@ -114,8 +114,8 @@ const CustomCursor = () => {
             rgba(255, 255, 255, 0.6) 0%, 
             ${getAccentColor()}80 30%,
             transparent 60%)`,
-          // Smaller version of the same 4-vertex concave kite shape
-          clipPath: 'polygon(50% 10%, 75% 55%, 50% 70%, 25% 55%)',
+          // Smaller version of the chevron/arrow shape
+          clipPath: 'polygon(50% 15%, 75% 65%, 50% 55%, 25% 65%)',
         }}
       />
 
@@ -126,7 +126,7 @@ const CustomCursor = () => {
           width: '100%',
           height: '100%',
           border: '1px solid rgba(255, 255, 255, 0.7)',
-          clipPath: 'polygon(50% 0%, 85% 60%, 50% 80%, 15% 60%)',
+          clipPath: 'polygon(50% 0%, 85% 75%, 50% 60%, 15% 75%)',
           background: 'transparent',
         }}
       />
