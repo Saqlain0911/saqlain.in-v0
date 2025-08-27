@@ -80,9 +80,6 @@ module.exports = {
         'lg': '12px',
         'full': '9999px',
       },
-      cursor: {
-        'animated': 'url("/src/assets/AnimatedCursor.ani"), auto',
-      },
       animation: {
         'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both',
         'fade-in-up-delayed': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both',
