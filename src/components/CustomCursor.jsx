@@ -56,7 +56,7 @@ const CustomCursor = () => {
       height: baseSize,
       pointerEvents: 'none',
       zIndex: 9999,
-      transform: `scale(${isHovering ? 1.2 : 1})`, // Only scale, no rotation
+      transform: `rotate(-45deg) scale(${isHovering ? 1.2 : 1})`, // Tilt 45 degrees left + scale
       transition: 'transform 0.2s ease-out',
       filter: `brightness(${isHovering ? 1.3 : 1}) saturate(${isHovering ? 1.2 : 1})`,
     };
