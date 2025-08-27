@@ -133,3 +133,15 @@ module.exports = {
   },
   plugins: [],
 }
+
+module.exports = {
+  theme: {
+    extend: {
+      cursor: {
+        'animated': 'url("/src/assets/AnimatedCursor.ani"), auto',
+      },
+    },
+  },
+  plugins: [],
+}
+
