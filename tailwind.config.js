@@ -91,6 +91,7 @@ module.exports = {
         'dot-fill-1': 'dotFill1 3s infinite',
         'dot-fill-2': 'dotFill2 3s infinite',
         'dot-fill-3': 'dotFill3 3s infinite',
+        'cursor-pulse': 'cursorPulse 0.8s ease-in-out infinite alternate',
       },
       keyframes: {
         fadeInUp: {
