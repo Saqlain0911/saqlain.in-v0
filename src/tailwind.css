@@ -25,7 +25,7 @@
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
-    cursor: none;
+    cursor: url('https://cdn.builder.io/o/assets%2F202a5f41621b40dd83935e0aee1b6613%2F7d24c39123bc448ebae8856016fbacee?alt=media&token=01224381-f5f7-4b75-ace3-d3cef8ce8d6b&apiKey=202a5f41621b40dd83935e0aee1b6613'), auto;
   }
 
   *,
@@ -58,6 +58,7 @@
     color: theme('colors.teal.500');
     text-decoration: none;
     transition: color 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: url('https://cdn.builder.io/o/assets%2F202a5f41621b40dd83935e0aee1b6613%2F7d24c39123bc448ebae8856016fbacee?alt=media&token=01224381-f5f7-4b75-ace3-d3cef8ce8d6b&apiKey=202a5f41621b40dd83935e0aee1b6613'), pointer;
   }
 
   a:hover {
