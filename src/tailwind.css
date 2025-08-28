@@ -443,10 +443,6 @@
       gap: 20px;
     }
 
-    .social-link {
-      @apply w-12 h-12;
-    }
-
     .cookie-notice {
       @apply ml-0;
     }
@@ -481,9 +477,5 @@
       font-size: 46px;
     }
 
-    .social-link {
-      @apply w-12 h-12;
-    }
-    
   }
 }
